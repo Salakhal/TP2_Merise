@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* Nom de SGBD :  Sybase AS Anywhere 9                          */
-/* Date de création :  14/12/2025 15:43:17                      */
+/* Date de crÃ©ation :  14/12/2025 16:13:33                      */
 /*==============================================================*/
 
 
@@ -9,14 +9,14 @@ if exists(select 1 from sys.sysforeignkey where role='FK_COMMANDE_PASSER_CLIENT'
        delete foreign key FK_COMMANDE_PASSER_CLIENT
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CONTENIR_CONTENIR_COMMANDE') then
-    alter table CONTENIR
-       delete foreign key FK_CONTENIR_CONTENIR_COMMANDE
+if exists(select 1 from sys.sysforeignkey where role='FK_LIGNE_CO_CONTENIR_COMMANDE') then
+    alter table LIGNE_COMMANDE
+       delete foreign key FK_LIGNE_CO_CONTENIR_COMMANDE
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CONTENIR_CONTENIR2_PRODUIT') then
-    alter table CONTENIR
-       delete foreign key FK_CONTENIR_CONTENIR2_PRODUIT
+if exists(select 1 from sys.sysforeignkey where role='FK_LIGNE_CO_CONTENIR2_PRODUIT') then
+    alter table LIGNE_COMMANDE
+       delete foreign key FK_LIGNE_CO_CONTENIR2_PRODUIT
 end if;
 
 if exists(
@@ -50,27 +50,27 @@ if exists(
    select 1 from sys.sysindex i, sys.systable t
    where i.table_id=t.table_id 
      and i.index_name='CONTENIR2_FK'
-     and t.table_name='CONTENIR'
+     and t.table_name='LIGNE_COMMANDE'
 ) then
-   drop index CONTENIR.CONTENIR2_FK
+   drop index LIGNE_COMMANDE.CONTENIR2_FK
 end if;
 
 if exists(
    select 1 from sys.sysindex i, sys.systable t
    where i.table_id=t.table_id 
      and i.index_name='CONTENIR_FK'
-     and t.table_name='CONTENIR'
+     and t.table_name='LIGNE_COMMANDE'
 ) then
-   drop index CONTENIR.CONTENIR_FK
+   drop index LIGNE_COMMANDE.CONTENIR_FK
 end if;
 
 if exists(
    select 1 from sys.sysindex i, sys.systable t
    where i.table_id=t.table_id 
      and i.index_name='CONTENIR_PK'
-     and t.table_name='CONTENIR'
+     and t.table_name='LIGNE_COMMANDE'
 ) then
-   drop index CONTENIR.CONTENIR_PK
+   drop index LIGNE_COMMANDE.CONTENIR_PK
 end if;
 
 if exists(
@@ -128,20 +128,20 @@ IDCLIENT ASC
 );
 
 /*==============================================================*/
-/* Table : CONTENIR                                             */
+/* Table : LIGNE_COMMANDE                                       */
 /*==============================================================*/
-create table CONTENIR 
+create table LIGNE_COMMANDE 
 (
     NUMCMD               integer                        not null,
     CODEPROD             integer                        not null,
     QTECMD               integer,
-    constraint PK_CONTENIR primary key (NUMCMD, CODEPROD)
+    constraint PK_LIGNE_COMMANDE primary key (NUMCMD, CODEPROD)
 );
 
 /*==============================================================*/
 /* Index : CONTENIR_PK                                          */
 /*==============================================================*/
-create unique index CONTENIR_PK on CONTENIR (
+create unique index CONTENIR_PK on LIGNE_COMMANDE (
 NUMCMD ASC,
 CODEPROD ASC
 );
@@ -149,14 +149,14 @@ CODEPROD ASC
 /*==============================================================*/
 /* Index : CONTENIR_FK                                          */
 /*==============================================================*/
-create  index CONTENIR_FK on CONTENIR (
+create  index CONTENIR_FK on LIGNE_COMMANDE (
 NUMCMD ASC
 );
 
 /*==============================================================*/
 /* Index : CONTENIR2_FK                                         */
 /*==============================================================*/
-create  index CONTENIR2_FK on CONTENIR (
+create  index CONTENIR2_FK on LIGNE_COMMANDE (
 CODEPROD ASC
 );
 
@@ -184,14 +184,14 @@ alter table COMMANDE
       on update restrict
       on delete restrict;
 
-alter table CONTENIR
-   add constraint FK_CONTENIR_CONTENIR_COMMANDE foreign key (NUMCMD)
+alter table LIGNE_COMMANDE
+   add constraint FK_LIGNE_CO_CONTENIR_COMMANDE foreign key (NUMCMD)
       references COMMANDE (NUMCMD)
       on update restrict
       on delete restrict;
 
-alter table CONTENIR
-   add constraint FK_CONTENIR_CONTENIR2_PRODUIT foreign key (CODEPROD)
+alter table LIGNE_COMMANDE
+   add constraint FK_LIGNE_CO_CONTENIR2_PRODUIT foreign key (CODEPROD)
       references PRODUIT (CODEPROD)
       on update restrict
       on delete restrict;
