@@ -46,6 +46,8 @@ Ce document présente l'analyse et la modélisation des données (MCD et MLD) po
 1.  **PASSER** : CLIENT **(0,N)** $\longleftarrow$ **PASSER** $\longrightarrow$ **(1,1)** COMMANDE
 2.  **CONTENIR** : COMMANDE **(1,N)** $\longleftarrow$ **CONTENIR** (QteCmd) $\longrightarrow$ **(0,N)** PRODUIT
 
+<img width="1249" height="568" alt="image" src="https://github.com/user-attachments/assets/c7de00b9-b122-4ad4-b9ae-de1f5965abc7" />
+
 ---
 
 ## 4. Modèle Logique de Données (MLD)
@@ -54,6 +56,8 @@ Ce document présente l'analyse et la modélisation des données (MCD et MLD) po
 * **PRODUIT** (**CodeProd**, LibProd, PrixUnit)
 * **COMMANDE** (**NumCmd**, DateCmd, AdresseLiv, IdClient\#)
 * **LIGNE\_COMMANDE** (**NumCmd\#**, **CodeProd\#**, QteCmd)
+
+<img width="1245" height="585" alt="image" src="https://github.com/user-attachments/assets/96e78954-4254-49d9-b71e-1c43d9151d78" />
 
 ---
 
