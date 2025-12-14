@@ -24,13 +24,16 @@ Ce document présente l'analyse et la modélisation des données (MCD et MLD) po
 
 ## 2. Règles de Gestion (RG)
 
-* **RG1** : Un client peut passer **0** ou **plusieurs** commandes.
-* **RG2** : Une commande est passée par **un seul** client.
-* **RG3** : Une commande doit contenir **au moins 1** produit.
-* **RG4** : Un produit peut être commandé **0** ou **plusieurs** fois.
-* **RG5** : La quantité commandée (**QteCmd**) doit être strictement positive ($> 0$).
-* **RG6** : Le prix unitaire d'un produit (**PrixUnit**) doit être strictement positif ($> 0$).
-
+* **RG1** : Un client peut passer **0** ou **plusieurs** commandes. *(Cardinalité (0,N) sur CLIENT)*
+* **RG2** : Une commande est passée par **un seul** client. *(Cardinalité (1,1) sur COMMANDE)*
+* **RG3** : Une commande possède une date obligatoire.
+* **RG4** : Une commande possède une adresse de livraison obligatoire.
+* **RG5** : Une commande concerne **au moins 1 produit** (1..N). *(Cardinalité (1,N) sur COMMANDE dans l'association CONTENIR)*
+* **RG6** : Un produit peut apparaître dans **0** ou **plusieurs** commandes. *(Cardinalité (0,N) sur PRODUIT dans l'association CONTENIR)*
+* **RG7** : Pour chaque produit commandé, une quantité est saisie (QteCmd).
+* **RG8** : La quantité commandée doit être strictement > 0.
+* **RG9** : Le prix unitaire d’un produit doit être strictement > 0.
+* **RG10** : Les identifiants IdClient, NumCmd, CodeProd sont uniques.
 ---
 
 ## 3. Modèle Conceptuel de Données (MCD)
