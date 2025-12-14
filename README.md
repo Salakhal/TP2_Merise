@@ -107,3 +107,20 @@ CREATE TABLE LIGNE_COMMANDE (
     FOREIGN KEY (NumCmd) REFERENCES COMMANDE(NumCmd),
     FOREIGN KEY (CodeProd) REFERENCES PRODUIT(CodeProd)
 );
+```
+
+## 👤 Auteur
+
+* **École Normale Supérieure de Marrakech**
+  
+* **Réalisé par :** SALMA LAKHAL
+  
+* **Filière  :** CLE_INFO_S5
+  
+* **Date :**  14/12/2025
+  
+* **Encadré par :** Pr. Mohamed LACHGAR
+
+* **Module :** Modélisation des Systèmes d’Information avec Merise
+  
+ 
